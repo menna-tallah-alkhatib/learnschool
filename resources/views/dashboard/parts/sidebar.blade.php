@@ -43,33 +43,19 @@
               <ul>
                 <li> <a href="{{route('dash.grade.index')}}"><i class="bi bi-circle"></i>جميع المستويات </a>
                 </li>
-                <li> <a href="{{route('dash.grade.create')}}"><i class="bi bi-circle"></i>اضافة مستوى جديد</a>
-                </li>
+
               </ul>
             </li>
             <li>
               <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bi bi-basket2-fill"></i>
                 </div>
-                <div class="menu-title">eCommerce</div>
+                <div class="menu-title">الشعب</div>
               </a>
               <ul>
-                <li> <a href="ecommerce-products-list.html"><i class="bi bi-circle"></i>Products List</a>
+                <li> <a href="{{ route('dash.section.index') }}"><i class="bi bi-circle"></i>جميع الشعب</a>
                 </li>
-                <li> <a href="ecommerce-products-grid.html"><i class="bi bi-circle"></i>Products Grid</a>
-                </li>
-                <li> <a href="ecommerce-products-categories.html"><i class="bi bi-circle"></i>Categories</a>
-                </li>
-                <li> <a href="ecommerce-orders.html"><i class="bi bi-circle"></i>Orders</a>
-                </li>
-                <li> <a href="ecommerce-orders-detail.html"><i class="bi bi-circle"></i>Order details</a>
-                </li>
-                <li> <a href="ecommerce-add-new-product.html"><i class="bi bi-circle"></i>Add New Product</a>
-                </li>
-                <li> <a href="ecommerce-add-new-product-2.html"><i class="bi bi-circle"></i>Add New Product 2</a>
-                </li>
-                <li> <a href="ecommerce-transactions.html"><i class="bi bi-circle"></i>Transactions</a>
-                </li>
+              
               </ul>
             </li>
             <li>

@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Stage extends Model
 {
     protected $guarded=[];
+    public static function getIdByTag($tag){
+       $stage=self::query()->where('tag',$tag)->first();
+       return $stage->id;
+    }
 }

@@ -11,4 +11,10 @@ class Grade extends Model
         return $this->belongsTo(Stage::class);
 
     }
+   public static function getStatusByCode($status){
+     if($status=='1'){
+        return'active';
+     }
+    return'inactive';
+    }
 }

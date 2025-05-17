@@ -29,7 +29,8 @@
   <link href="{{asset('dashboard/assets/css/light-theme.css')}}" rel="stylesheet" />
   <link href="{{asset('dashboard/assets/css/semi-dark.css')}}" rel="stylesheet" />
   <link href="{{asset('dashboard/assets/css/header-colors.css')}}" rel="stylesheet" />
-
+ <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/toastr/app-assets/vendors/css/extensions/toastr.min.css') }}">
   <title>@yield('title')</title>
 </head>
 
@@ -566,6 +567,8 @@
   <script src="{{ asset('datatable_custom/js/vendor/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('datatable_custom/js/vendor/dataTables.bootstrap5.js') }}"></script>
   <script src="{{ asset('datatable_custom/js/vendor/dataTables.responsive.min.js') }}"></script>
+
+  <script src="{{ asset('dashboard/toastr/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
 
 
 @yield('js')
