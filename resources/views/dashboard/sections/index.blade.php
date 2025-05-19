@@ -145,7 +145,6 @@
                     data: 'action',
                     name: 'action',
                     title: 'العمليات',
-
                     orderable: false,
                     searchable: false,
                 },
@@ -175,13 +174,35 @@
                     // console.log(res.message);
                     $('#add-modal').modal('hide');
                     $('#add-form').trigger('reset');
-                    toastr.success(res.success)
+                    toastr.success(res.success);
                     table.draw();
                 },
             });
 
         });
 
+        $(document).ready(function() {
+            $(document).on('change', '.active-section-sw', function(e) {
+              var id = $(this).data('id');
+               var status = $(this).data('status');
+
+                e.preventDefault();
+                $.ajax({
+                    url: "{{ route('dash.section.changestatus') }}",
+                    type: "post",
+                    data:{
+                        'id': id ,
+                        'status': status ,
+                        '_token': "{{ csrf_token() }}" ,
+                    },
+                    success: function(res) {
+                        // console.log(res.message);
+                        toastr.success(res.success);
+                        table.draw();
+                    },
+                });
+            })
+        });
 
 
 
@@ -281,7 +302,6 @@
                             //alert(gradetag);
                             $('#gradetag').val(gradetag);
                         })
-
                     });
 
                     $('.section-checkbox').on('change', function() {

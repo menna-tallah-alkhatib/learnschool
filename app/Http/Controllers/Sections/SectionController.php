@@ -63,7 +63,8 @@ class SectionController extends Controller
                     'status' => 'active' ,
                   ]);
                }
-           }elseif($newcount < $currentCount){
+           }
+           elseif($newcount < $currentCount){
               $limit = $currentCount - $newcount ;
               $lastSections = Section::query()->orderBy('id' , 'desc')->limit($limit)->get();
               // dd($lastSections);

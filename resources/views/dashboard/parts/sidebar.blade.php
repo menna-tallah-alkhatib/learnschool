@@ -55,7 +55,7 @@
               <ul>
                 <li> <a href="{{ route('dash.section.index') }}"><i class="bi bi-circle"></i>جميع الشعب</a>
                 </li>
-              
+
               </ul>
             </li>
             <li>
