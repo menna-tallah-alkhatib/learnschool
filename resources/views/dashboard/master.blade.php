@@ -31,6 +31,26 @@
   <link href="{{asset('dashboard/assets/css/header-colors.css')}}" rel="stylesheet" />
  <link rel="stylesheet" type="text/css"
           href="{{ asset('dashboard/toastr/app-assets/vendors/css/extensions/toastr.min.css') }}">
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+ <style>
+        .modal-dialog-scrollable .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+          .swal-footer {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 10px;
+        }
+
+        .swal-button {
+            min-width: 100px;
+        }
+
+    </style>
   <title>@yield('title')</title>
 </head>
 
@@ -569,6 +589,126 @@
   <script src="{{ asset('datatable_custom/js/vendor/dataTables.responsive.min.js') }}"></script>
 
   <script src="{{ asset('dashboard/toastr/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+        $('.btn-add').on('click', function(e) {
+            $('input').removeClass('is-invalid');
+            $('select').removeClass('is-invalid');
+            $('.invalid-feedback').text('');
+        });
+
+
+        $('.add-form').on('submit', function(e) {
+            e.preventDefault();
+            var data = new FormData(this);
+            var url = $(this).attr('action');
+            var type = $(this).attr('method');
+            //alert('ahmed')
+            // name=ali&gender=1&...
+            $.ajax({
+                url: url,
+                type: type,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function(res) {
+                    // console.log(res.message);
+                    $('#add-modal').modal('hide');
+                    $('#add-form').trigger('reset');
+                    toastr.success(res.success)
+                    table.draw();
+                },
+                error: function(data) {
+                    if (data.status === 422) {
+                        var response = data.responseJSON;
+                        $.each(response.errors, function(key, value) {
+                            var str = (key.split("."));
+                            if (str[1] === '0') {
+                                key = str[0] + '[]';
+                            }
+                            $('[name="' + key + '"], [name="' + key + '[]"]').addClass(
+                                'is-invalid');
+                            $('[name="' + key + '"], [name="' + key + '[]"]').closest(
+                                '.form-group').find('.invalid-feedback').html(value[0]);
+                        });
+                    } else {
+                        console.log('خطأ غير متوقع');
+                    }
+                }
+
+            });
+        });
+
+        $('.update-form').on('submit', function(e) {
+            e.preventDefault();
+            var data = new FormData(this);
+            var url = $(this).attr('action');
+            var type = $(this).attr('method');
+            $.ajax({
+                url: url,
+                type: type,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function(res) {
+                    $('#update-modal').modal('hide');
+                    toastr.success(res.success)
+                    table.draw();
+                },
+
+
+            });
+        });
+
+        $(document).ready(function() {
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var button = $(this);
+                var id = button.data('id');
+                var url = button.data('url');
+                swal({
+                    title: "هل أنت متأكد من العملية ؟",
+                    text: "انتبه عند حذف العنصر لا يمكن التراجع عن العملية .",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "إلغاء",
+                            value: null,
+                            visible: true,
+                            className: "custom-cancel-btn",
+                            closeModal: true,
+                        },
+                        confirm: {
+                            text: "احذف",
+                            value: true,
+                            visible: true,
+                            className: "custom-confirm-btn",
+                            closeModal: true,
+                        },
+                    },
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: url,
+                            type: "post",
+                            data: {
+                                id: id,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(res) {
+                                toastr.success(res.success)
+                                table.draw();
+                            },
+                        });
+                    } else {
+                        toastr.error('تم الغاء عملية الحذف')
+                    }
+                });
+            })
+        });
+    </script>
+
 
 
 @yield('js')

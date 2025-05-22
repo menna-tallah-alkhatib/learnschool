@@ -100,9 +100,13 @@ class DatabaseSeeder extends Seeder
         //         'stage_id'=>$stagep,
         //         'tag'=>'12',
         //     ]);
-         Section::create([
-                'name' => '7',
-            ]);
+
+
+
+
+        //  Section::create([
+        //         'name' => '7',
+        //     ]);
 
 
         // User::factory()->create([
