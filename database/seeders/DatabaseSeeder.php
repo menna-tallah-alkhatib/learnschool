@@ -8,6 +8,8 @@ use App\Models\Grade;
 use App\Models\Section;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +34,11 @@ class DatabaseSeeder extends Seeder
             //     'name' => 'المرحلة الثانوية',
             //     'tag'=>'h',
             // ]);
+
+             \App\Models\User::create([
+             'email' => 'ahmed@ahmed.com',
+             'password' => Hash::make('123456789'),
+         ]);
 
 
 
