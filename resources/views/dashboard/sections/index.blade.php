@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('title')
-    مدرسة ليرن | صفحة الرئيسية للمستويات
+    مدرسة الغد | صفحة الرئيسية للمستويات
 @stop
 @section('content')
     <main class="page-content">
@@ -19,7 +19,7 @@
 
                         <div class="container">
 
-                            <form  method="post" action="{{ route('dash.section.add') }}" id="add-form" class="add-form">
+                            <form method="post" action="{{ route('dash.section.add')  }}" id="add-form" class="add-form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="mb-4">
                                     <label>عدد الشعبة المرغوب بها :</label>
@@ -145,6 +145,7 @@
                     data: 'action',
                     name: 'action',
                     title: 'العمليات',
+
                     orderable: false,
                     searchable: false,
                 },
@@ -159,32 +160,9 @@
         });
 
 
-        // $('.add-form').on('submit', function(e) {
-        //     e.preventDefault();
-        //     var data = new FormData(this);
-        //     var url = $(this).attr('action');
-        //     var type = $(this).attr('method');
-        //     //alert('ahmed')
-        //     // name=ali&gender=1&...
-        //     $.ajax({
-        //         url: url,
-        //         type:type,
-        //         processData: false,
-        //         contentType: false,
-        //         data: data,
-        //         success: function(res) {
-        //             // console.log(res.message);
-        //             $('#add-modal').find(':focus').blur(); // إزالة التركيز من العنصر النشط داخل المودال
-        //             $('#add-modal').modal('hide');
-        //             $('#add-form').trigger('reset');
-        //             toastr.success(res.success);
-        //             table.draw();
-        //         },
-        //     });
 
-        // });
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             $(document).on('change', '.active-section-sw', function(e) {
               var id = $(this).data('id');
                var status = $(this).data('status');
@@ -200,13 +178,13 @@
                     },
                     success: function(res) {
                         // console.log(res.message);
-                        toastr.success(res.success);
+                        toastr.success(res.success)
                         table.draw();
                     },
                 });
             })
         });
-
+*/
 
 
         /*

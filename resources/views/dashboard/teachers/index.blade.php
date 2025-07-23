@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('title')
-    مدرسة ليرن | صفحة الرئيسية للمعلمين
+    مدرسة الغد | صفحة الرئيسية للمعلمين
 @stop
 @section('content')
     <main class="page-content">
@@ -385,18 +385,6 @@
             language: {
                 url: "{{ asset('datatable_custom/i18n/ar.json') }}",
             }
-        });
-
-
-        $('#search-btn').on('click', function(e) {
-            e.preventDefault();
-            table.draw();
-        });
-
-        $('#clear-btn').on('click', function(e) {
-            e.preventDefault();
-            $('.search-input').val("").trigger('change')
-            table.draw();
         });
 
         $(document).ready(function() {

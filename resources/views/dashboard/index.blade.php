@@ -1,673 +1,473 @@
 @extends('dashboard.master')
+@section('title')
+    مدرسة ليرن  | صفحة الرئيسية للمعلمين
+@stop
 @section('content')
+    <main class="page-content">
 
-<main class="page-content">
-              
-              <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-4">
-                <div class="col">
-                  <div class="card overflow-hidden radius-10">
-                      <div class="card-body p-2">
-                       <div class="d-flex align-items-stretch justify-content-between radius-10 overflow-hidden">
-                        <div class="w-50 p-3 bg-light-primary">
-                          <p>Total Orders</p>
-                          <h4 class="text-primary">8,542</h4>
-                        </div>
-                        <div class="w-50 bg-primary p-3">
-                           <p class="mb-3 text-white">+ 16% <i class="bi bi-arrow-up"></i></p>
-                           <div id="chart1"></div>
-                        </div>
-                      </div>
+        {{-- add modal --}}
+        <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="stagesModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="stagesModalLabel">اضافة معلم جديد</h5>
+                        <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                     </div>
-                  </div>
-                 </div>
-                 <div class="col">
-                  <div class="card overflow-hidden radius-10">
-                      <div class="card-body p-2">
-                       <div class="d-flex align-items-stretch justify-content-between radius-10 overflow-hidden">
-                        <div class="w-50 p-3 bg-light-primary">
-                          <p>Total Views</p>
-                          <h4 class="text-primary">12.5M</h4>
-                        </div>
-                        <div class="w-50 bg-primary p-3">
-                           <p class="mb-3 text-white">- 3.4% <i class="bi bi-arrow-down"></i></p>
-                           <div id="chart2"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 </div>
-                 <div class="col">
-                  <div class="card overflow-hidden radius-10">
-                      <div class="card-body p-2">
-                       <div class="d-flex align-items-stretch justify-content-between radius-10 overflow-hidden">
-                        <div class="w-50 p-3 bg-light-primary">
-                          <p>Revenue</p>
-                          <h4 class="text-primary">$64.5K</h4>
-                        </div>
-                        <div class="w-50 bg-primary p-3">
-                           <p class="mb-3 text-white">+ 24% <i class="bi bi-arrow-up"></i></p>
-                           <div id="chart3"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 </div>
-                 <div class="col">
-                  <div class="card overflow-hidden radius-10">
-                      <div class="card-body p-2">
-                       <div class="d-flex align-items-stretch justify-content-between radius-10 overflow-hidden">
-                        <div class="w-50 p-3 bg-light-primary">
-                          <p>Customers</p>
-                          <h4 class="text-primary">25.8K</h4>
-                        </div>
-                        <div class="w-50 bg-primary p-3">
-                           <p class="mb-3 text-white">+ 8.2% <i class="bi bi-arrow-up"></i></p>
-                           <div id="chart4"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 </div>
-              </div><!--end row-->
-  
-  
-              <div class="row">
-                <div class="col-12 col-lg-6 col-xl-6 col-xxl-4 d-flex">
-                  <div class="card radius-10 bg-transparent shadow-none w-100">
-                    <div class="card-body p-0">
-                      <div class="card radius-10">
-                        <div class="card-body">
-                          <div class="d-flex align-items-center">
-                             <h6 class="mb-0">By Device</h6>
-                             <div class="fs-5 ms-auto dropdown">
-                                <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                  <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                          <div class="row row-cols-1 row-cols-md-2 mt-3 g-3">
-                            <div class="col">
-                              <div class="by-device-container">
-                                <canvas id="chart5"></canvas>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="">
-                                <ul class="list-group list-group-flush">
-                                  <li class="list-group-item d-flex align-items-center justify-content-between border-0">
-                                    <i class="bi bi-tablet-landscape-fill me-2 text-primary"></i> <span>Tablet - </span> <span>22.5%</span>
-                                  </li>
-                                  <li class="list-group-item d-flex align-items-center justify-content-between border-0">
-                                    <i class="bi bi-phone-fill me-2 text-primary-2"></i> <span>Mobile - </span> <span>62.3%</span>
-                                  </li>
-                                  <li class="list-group-item d-flex align-items-center justify-content-between border-0">
-                                    <i class="bi bi-display-fill me-2 text-primary-3"></i> <span>Desktop - </span> <span>15.2%</span>
-                                  </li>
-                                </ul>
-                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card radius-10 w-100 mb-0 overflow-hidden">
-                        <div class="card-body">
-                          <div class="d-flex align-items-center">
-                            <h6 class="mb-0">Sales</h6>
-                            <div class="fs-5 ms-auto">
-                              <div class="d-flex align-items-center justify-content-sm-end gap-3 cursor-pointer">
-                                <div class="font-13"><i class="bi bi-circle-fill text-primary"></i><span class="ms-2">iPad</span></div>
-                                <div class="font-13"><i class="bi bi-circle-fill text-primary-2"></i><span class="ms-2">Mob</span></div>
-                                <div class="font-13"><i class="bi bi-circle-fill text-primary-3"></i><span class="ms-2">Lap</span></div>
-                              </div>
-                             </div>
-                         </div>
-                        </div>
-                        <div id="chart6"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-6 col-xl-6 col-xxl-4 d-flex">
-                  <div class="card radius-10 w-100 overflow-hidden">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0">Orders</h6>
-                        <div class="fs-5 ms-auto dropdown">
-                           <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                             <ul class="dropdown-menu">
-                               <li><a class="dropdown-item" href="#">Action</a></li>
-                               <li><a class="dropdown-item" href="#">Another action</a></li>
-                               <li><hr class="dropdown-divider"></li>
-                               <li><a class="dropdown-item" href="#">Something else here</a></li>
-                             </ul>
-                         </div>
-                       </div>
-                      <div id="chart7"></div>
-                      <div class="d-flex align-items-center gap-5 justify-content-center mt-4 p-3 bg-light radius-10 border"> 
-                        <div class="text-center">
-                          <h2 class="mb-3 text-primary">9.32m</h2>
-                          <p>Total <br> Orders</p>
-                        </div>
-                        <div class="border-end sepration"></div>
-                        <div class="text-center">
-                         <h2 class="mb-3">2.56</h2>
-                         <p>AVG per <br> Customer</p>
-                       </div>
-                     </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-12 col-xl-12 col-xxl-4 d-flex">
-                  <div class="w-100">
-                  <div class="card radius-10">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0">Traffic</h6>
-                        <div class="fs-5 ms-auto">
-                          <div class="d-flex align-items-center justify-content-sm-end gap-3 cursor-pointer">
-                            <div class="font-13"><i class="bi bi-circle-fill text-primary"></i><span class="ms-2">Referral</span></div>
-                            <div class="font-13"><i class="bi bi-circle-fill text-primary-3"></i><span class="ms-2">Search</span></div>
-                          </div>
-                         </div>
-                       </div>
-                       <div id="chart8"></div>
-                    </div>
-                  </div>
-                  <div class="card radius-10">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="">
-                          <p class="mb-1">Bounce Rate</p>
-                          <h4 class="mb-0 text-primary">24.8%</h4>
-                        </div>
-                        <div class="dropdown ms-auto">
-                          <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                          </div>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="javascript:;">Action</a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                            </li>
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div id="chart9"></div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div><!--end row-->
-  
-  
-              <div class="row">
-                <div class="col-12 col-lg-12 col-xl-4 d-flex">
-                  <div class="card w-100 radius-10">
-                    <div class="card-body">
-                      <div class="card radius-10 border shadow-none">
-                        <div class="card-body pb-0">
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h6 class="mb-0">Montly Sales</h6>
-                            </div>
-                            <div class="fs-5 ms-auto dropdown">
-                              <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                          </div>
-                          <div class="mt-0">
-                            <div class="widget-icon mx-auto mb-2 bg-light-primary text-primary">
-                              <i class="bi bi-bank2"></i>
-                            </div>
-                            <h4 class="mb-0 text-center">$45,865</h4>
-                          </div>
-                          <div id="chart15"></div>
-                         </div>
-                      </div>
-                      <div class="card radius-10 border shadow-none">
-                        <div class="card-body">
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h6 class="mb-0">Total Clicks</h6>
-                            </div>
-                            <div class="fs-5 ms-auto dropdown">
-                              <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                          </div>
-                          <div id="chart14"></div>
-                        </div>
-                      </div>
-                      <div class="card radius-10 border shadow-none mb-0">
-                        <div class="card-body">
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h6 class="mb-0">Sessions</h6>
-                            </div>
-                            <div class="fs-5 ms-auto dropdown">
-                              <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                          </div>
-                          <div id="chart16"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-12 col-xl-8 d-flex">
-                  <div class="w-100">
-                     <div class="row">
-                       <div class="col-12 col-lg-12 col-xl-12">
-                        <div class="card radius-10">
-                          <div class="card-body">
-                            <div class="d-flex align-items-center">
-                              <h6 class="mb-0">Visitors</h6>
-                              <div class="fs-5 ms-auto dropdown">
-                                 <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
-                                   <ul class="dropdown-menu">
-                                     <li><a class="dropdown-item" href="#">Action</a></li>
-                                     <li><a class="dropdown-item" href="#">Another action</a></li>
-                                     <li><hr class="dropdown-divider"></li>
-                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                   </ul>
-                               </div>
-                             </div>
-                             <div class="d-sm-flex align-items-center gap-3 mt-3">
-                               <div class="mb-2 mb-sm-0">
-                                <h4 class="mb-0">254,852</h4>
-                                 <p class="mb-0">New / Returning</p>
-                               </div>
-                               <div class="d-none d-sm-block border-end sepration-2"></div>
-                               <div class="align-self-end mb-2 mb-sm-0">
-                                <p class="mb-0">45,762 / 2,491</p>
-                              </div>
-                              <div class="align-self-end ms-auto">
-                                <div class="d-flex align-items-center gap-3">
-                                  <p class="mb-0 font-13">
-                                    <i class="bi bi-square-fill ms-1 text-primary"></i> New Visitors
-                                  </p>
-                                  <p class="mb-0 font-13">
-                                    <i class="bi bi-square-fill ms-1 text-primary-3"></i> Returning Visitors
-                                  </p>
+                    <form method="post" action="{{ route('dash.teacher.add') }}" id="add-form" class="add-form">
+                        <div class="modal-body">
+
+                            <div class="container">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="mb-4 form-group">
+                                    <label>الاسم الكامل</label>
+                                    <input name="name" class="form-control" placeholder="الاسم الكامل">
+                                    <div class="invalid-feedback"></div>
+
                                 </div>
-                              </div>
-                             </div>
-                            <div id="chart10"></div>
-                          </div>
+                                <div class="mb-4 form-group">
+                                    <label> البريد الالكتروني</label>
+                                    <input name="email" type="email" class="form-control"
+                                        placeholder="البريد الالكتروني">
+                                    <div class="invalid-feedback"></div>
+
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>رقم الهاتف</label>
+                                    <input name="phone" class="form-control" placeholder="رقم الهاتف">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>التخصص الجامعي</label>
+                                    <input name="spec" class="form-control" placeholder="التخصص الجامعي">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>المؤهل العلمي</label>
+                                    <select name="qual" class="form-control">
+                                        <option selected disabled>اخترالمؤهل العلمي</option>
+                                        <option value="d">دبلوم </option>
+                                        <option value="b"> بكلوريوس</option>
+                                        <option value="m">ماجستير </option>
+                                        <option value="dr"> دكتوراه</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>الجنس</label>
+                                    <select name="gender" class="form-control">
+                                        <option selected disabled>اختر الجنس</option>
+                                        <option value="m">ذكر </option>
+                                        <option value="fm">انثى</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>تاريخ التعيين</label>
+                                    <input name="hire_date" type="date" class="form-control">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+
+                                <div class="mb-4 form-group">
+                                    <label>تاريخ الميلاد</label>
+                                    <input name="date_of_birth" type="date" class="form-control">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+
+                            </div>
                         </div>
-                       </div>
-                       <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="card radius-10">
-                          <div class="card-body">
-                             <div id="chart11"></div>
-                          </div>
+                        <div class="modal-footer mb-3">
+                            <button class="btn btn-outline-success col-12" type="submit">اضافة</button>
+                            <button type="button" class="btn btn-outline-secondary col-12 mb-3"
+                                data-bs-dismiss="modal">إغلاق</button>
                         </div>
-                       </div>
-                       <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="card radius-10">
-                          <div class="card-body">
-                             <div id="chart12"></div>
-                          </div>
-                        </div>
-                       </div>
-                       <div class="col-12 col-lg-4 col-xl-4">
-                        <div class="card radius-10">
-                          <div class="card-body">
-                             <div id="chart13"></div>
-                          </div>
-                        </div>
-                       </div>
-                     </div><!--end row-->
-                    </div>
+                    </form>
                 </div>
-              </div><!--end row-->
-  
-  
-              <div class="row">
-                <div class="col-12 col-lg-12 col-xl-8 d-flex">
-                  <div class="card radius-10 w-100">
+
+
+            </div>
+        </div>
+        {{-- ///////////////////////////////////////// --}}
+
+
+        {{-- update modal --}}
+        <div class="modal fade" id="update-modal" tabindex="-1" aria-labelledby="stagesModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="stagesModalLabel">تعديل المعلم </h5>
+                        <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                    </div>
+                    <form method="post" action="{{ route('dash.teacher.update') }}" id="update-form" class="update-form">
+                        <div class="modal-body">
+
+                            <div class="container">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="id" id="id">
+                                <div class="mb-4 form-group">
+                                    <label>الاسم الكامل</label>
+                                    <input name="name" id="name" class="form-control"
+                                        placeholder="الاسم الكامل">
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label> البريد الالكتروني</label>
+                                    <input name="email" id="email" type="email" class="form-control"
+                                        placeholder="البريد الالكتروني">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>رقم الهاتف</label>
+                                    <input name="phone" id="phone" class="form-control" placeholder="رقم الهاتف">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>التخصص الجامعي</label>
+                                    <input name="spec" id="spec" class="form-control"
+                                        placeholder="التخصص الجامعي">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>المؤهل العلمي</label>
+                                    <select name="qual" id="qual" class="form-control">
+                                        <option selected disabled>اخترالمؤهل العلمي</option>
+                                        <option value="d">دبلوم </option>
+                                        <option value="b"> بكلوريوس</option>
+                                        <option value="m">ماجستير </option>
+                                        <option value="dr"> دكتوراه</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>الجنس</label>
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option selected disabled>اختر الجنس</option>
+                                        <option value="m">ذكر </option>
+                                        <option value="fm">انثى</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>الحالة</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option selected disabled>اختر الحالة</option>
+                                        <option value="active">مفعل </option>
+                                        <option value="inactive">معطل</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label>تاريخ التعيين</label>
+                                    <input name="hire_date" id="hire_date" type="date" class="form-control">
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+
+                                <div class="mb-4 form-group">
+                                    <label>تاريخ الميلاد</label>
+                                    <input name="date_of_birth" id="date_of_birth" type="date" class="form-control">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer mb-3">
+                            <button class="btn btn-outline-info col-12" type="submit">تعديل</button>
+                            <button type="button" class="btn btn-outline-secondary col-12 mb-3"
+                                data-bs-dismiss="modal">إغلاق</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xl-12 d-flex">
+                <div class="card radius-10 w-100">
                     <div class="card-header bg-transparent">
-                      <div class="row g-3 align-items-center">
-                        <div class="col">
-                          <h5 class="mb-0">Recent Orders</h5>
-                        </div>
-                        <div class="col">
-                          <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
-                            <div class="dropdown">
-                              <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded font-22 text-option"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="javascript:;">Action</a>
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                                </li>
-                                <li>
-                                  <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                                </li>
-                              </ul>
+                        <div class="row g-3 align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0"> التصفية</h5>
                             </div>
-                          </div>
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
+                                </div>
+                            </div>
                         </div>
-                       </div>
                     </div>
                     <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table align-middle mb-0">
-                          <thead class="table-light">
-                            <tr>
-                              <th>#ID</th>
-                              <th>Product</th>
-                              <th>Quantity</th>
-                              <th>Price</th>
-                              <th>Date</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>#89742</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3">
-                                  <div class="product-box border">
-                                     <img src="dashboard/assets/images/products/11.png" alt="">
-                                  </div>
-                                  <div class="product-info">
-                                    <h6 class="product-name mb-1">Smart Mobile Phone</h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>2</td>
-                              <td>$214</td>
-                              <td>Apr 8, 2021</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3 fs-6">
-                                  <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                                  <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                  <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>#68570</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3">
-                                  <div class="product-box border">
-                                     <img src="dashboard/assets/images/products/07.png" alt="">
-                                  </div>
-                                  <div class="product-info">
-                                    <h6 class="product-name mb-1">Sports Time Watch</h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>1</td>
-                              <td>$185</td>
-                              <td>Apr 9, 2021</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3 fs-6">
-                                  <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                                  <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                  <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>#38567</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3">
-                                  <div class="product-box border">
-                                     <img src="dashboard/assets/images/products/17.png" alt="">
-                                  </div>
-                                  <div class="product-info">
-                                    <h6 class="product-name mb-1">Women Red Heals</h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>3</td>
-                              <td>$356</td>
-                              <td>Apr 10, 2021</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3 fs-6">
-                                  <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                                  <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                  <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>#48572</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3">
-                                  <div class="product-box border">
-                                     <img src="dashboard/assets/images/products/04.png" alt="">
-                                  </div>
-                                  <div class="product-info">
-                                    <h6 class="product-name mb-1">Yellow Winter Jacket</h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>1</td>
-                              <td>$149</td>
-                              <td>Apr 11, 2021</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3 fs-6">
-                                  <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                                  <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                  <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>#96857</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3">
-                                  <div class="product-box border">
-                                     <img src="dashboard/assets/images/products/10.png" alt="">
-                                  </div>
-                                  <div class="product-info">
-                                    <h6 class="product-name mb-1">Orange Micro Headphone</h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>2</td>
-                              <td>$199</td>
-                              <td>Apr 15, 2021</td>
-                              <td>
-                                <div class="d-flex align-items-center gap-3 fs-6">
-                                  <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                                  <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                  <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 mb-3">
+                                <input type="text" id="search-name" class="form-control search-input" placeholder="اسم المعلم ">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="email" id="search-email" class="form-control search-input"
+                                    placeholder="البريد الإلكتروني">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" id="search-phone" class="form-control  search-input" placeholder="رقم الجوال">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mb-3">
+                            <button type="submit" id="search-btn" class="btn btn-outline-success col-6">بحث</button>
+                            <button type="reset" id="clear-btn" class="btn btn-outline-secondary col-6 ">تنظيف</button>
+                        </div>
+
+                        <button class="btn btn-outline-primary col-12 btn-add" data-bs-toggle="modal"
+                            data-bs-target="#add-modal">
+                            اضافة معلم
+                        </button>
                     </div>
-                  </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-4 d-flex">
-                  <div class="card radius-10 w-100">
-                    <div class="card-header bg-transparent border-0">
-                      <div class="row g-3 align-items-center">
-                        <div class="col">
-                          <h6 class="mb-0">Top Sold</h6>
-                        </div>
-                        <div class="col">
-                          <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
-                            <div class="dropdown">
-                              <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded font-22 text-option"></i>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="javascript:;">Action</a>
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                                </li>
-                                <li>
-                                  <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                                </li>
-                              </ul>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xl-12 d-flex">
+                <div class="card radius-10 w-100">
+                    <div class="card-header bg-transparent">
+                        <div class="row g-3 align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0">جميع المعلمين</h5>
                             </div>
-                          </div>
-                        </div>
-                       </div>
-                    </div>
-                    <div class="card-body p-0">
-                       <div class="best-product p-2 mb-3">
-                         <div class="best-product-item">
-                           <div class="d-flex align-items-center gap-3">
-                             <div class="product-box border">
-                                <img src="dashboard/assets/images/products/01.png" alt="">
-                             </div>
-                             <div class="product-info flex-grow-1">
-                              <div class="progress-wrapper">
-                                <div class="progress" style="height: 5px;">
-                                  <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;"></div>
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-end gap-3 cursor-pointer">
+
                                 </div>
-                              </div>
-                               <p class="product-name mb-0 mt-2 fs-6">White Polo T-Shirt <span class="float-end">245</span></p>
-                             </div>
-                           </div>
-                         </div>
-                         <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/02.png" alt="">
                             </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Black Coat Pant <span class="float-end">245</span></p>
-                            </div>
-                          </div>
                         </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/03.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Blue Shade Jeans <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/04.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Yellow Winter Jacket <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/05.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Men Sports Shoes Nike <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/06.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 30%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Fancy Home Sofa <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/07.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 20%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Sports Time Watch <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="best-product-item">
-                          <div class="d-flex align-items-center gap-3">
-                            <div class="product-box border">
-                               <img src="dashboard/assets/images/products/08.png" alt="">
-                            </div>
-                            <div class="product-info flex-grow-1">
-                             <div class="progress-wrapper">
-                               <div class="progress" style="height: 5px;">
-                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 10%;"></div>
-                               </div>
-                             </div>
-                              <p class="product-name mb-0 mt-2 fs-6">Women Blue Heals <span class="float-end">245</span></p>
-                            </div>
-                          </div>
-                        </div>
-                       </div>
                     </div>
-                  </div>
-  
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatable" class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>الاسم</th>
+                                        <th>البريد الالكتروني</th>
+                                        <th>رقم الهاتف</th>
+                                        <th>تاريخ الميلاد </th>
+                                        <th>تاريخ التعيين</th>
+                                        <th>الجنس</th>
+                                        <th>التخصص الجامعي</th>
+                                        <th>المؤهل العلمي</th>
+                                        <th>الحالة</th>
+                                        <th>العمليات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div><!--end row-->
-  
-  
-            </main>
+            </div>
+
+        </div>
+    </main>
+@stop
+@section('js')
+    <script>
+        var table = $('#datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+
+            ajax: {
+                url: "{{ route('dash.teacher.getdata') }}",
+                data: function(n) {
+                    n.name = $('#search-name').val();
+                    n.email = $('#search-email').val();
+                    n.phone = $('#search-phone').val();
+                }
+            },
+
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                },
+
+                {
+                    data: 'name',
+                    name: 'name',
+                    title: 'الاسم',
+                    orderable: true,
+                    searchable: true,
+                },
+
+                {
+                    data: 'email',
+                    name: 'email',
+                    title: 'البريد الالكتروني',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'phone',
+                    name: 'phone',
+                    title: 'رقم الهاتف',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'date_of_birth',
+                    name: 'date_of_birth',
+                    title: 'تاريخ الميلاد',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'hire_date',
+                    name: 'hire_date',
+                    title: 'تاريخ التعيين',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'gender',
+                    name: 'gender',
+                    title: 'الجنس',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'spec',
+                    name: 'spec',
+                    title: 'التخصص الجامعي',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'qual',
+                    name: 'qual',
+                    title: 'المؤهل العلمي',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'status',
+                    name: 'status',
+                    title: 'الحالة',
+                    orderable: true,
+                    searchable: true,
+                },
+
+                {
+                    data: 'action',
+                    name: 'action',
+                    title: 'العمليات',
+
+                    orderable: false,
+                    searchable: false,
+                },
+
+            ],
+
+            language: {
+                url: "{{ asset('datatable_custom/i18n/ar.json') }}",
+            }
+        });
+
+
+
+        $(document).ready(function() {
+            $(document).on('click', '.update_btn', function(e) {
+                e.preventDefault();
+                var button = $(this);
+                var name = button.data('name');
+                var email = button.data('email');
+                var phone = button.data('phone');
+                var qual = button.data('qual');
+                var spec = button.data('spec');
+                var gender = button.data('gender');
+                var status = button.data('status');
+                var date_of_birth = button.data('date-of-birth');
+                var hire_date = button.data('hire-date');
+                var id = button.data('id');
+
+                $('#name').val(name);
+                $('#email').val(email);
+                $('#phone').val(phone);
+                $('#gender').val(gender);
+                $('#qual').val(qual);
+                $('#spec').val(spec);
+                $('#status').val(status);
+                $('#date_of_birth').val(date_of_birth);
+                $('#hire_date').val(hire_date);
+                $('#id').val(id);
+            });
+        });
+
+
+        $(document).ready(function() {
+            $(document).on('click', '.active-btn', function(e) {
+                e.preventDefault();
+                var button = $(this);
+                var id = button.data('id');
+                var url = button.data('url');
+                swal({
+                    title: "هل أنت متأكد من العملية ؟",
+                    text: "سيتم تفعيل العنصر المعطل .",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "إلغاء",
+                            value: null,
+                            visible: true,
+                            className: "custom-cancel-btn",
+                            closeModal: true,
+                        },
+                        confirm: {
+                            text: "احذف",
+                            value: true,
+                            visible: true,
+                            className: "custom-confirm-btn",
+                            closeModal: true,
+                        },
+                    },
+                    dangerMode: false,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: url,
+                            type: "post",
+                            data: {
+                                id: id,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(res) {
+                                toastr.success(res.success)
+                                table.draw();
+                            },
+                        });
+                    } else {
+                        toastr.error('تم الغاء عملية التفعيل')
+                    }
+                });
+            })
+        });
+    </script>
+
+
+
+
 @stop

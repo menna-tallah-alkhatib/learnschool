@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('title')
-    مدرسة ليرن | صفحة الرئيسية للمعلمين
+    مدرسة الغد | صفحة الرئيسية للمعلمين
 @stop
 @section('content')
     <main class="page-content">
@@ -220,6 +220,7 @@
                                         <th>المرحلة الدراسية</th>
                                         <th>معلم المادة</th>
                                         <th>كتاب المادة</th>
+                                        <th>ماحضرات المادة</th>
                                         <th>العمليات</th>
                                     </tr>
                                 </thead>
@@ -281,6 +282,13 @@
                     title: 'كتاب المادة',
                     orderable: true,
                     searchable: true,
+                },
+                 {
+                    data: 'lectures',
+                    name: 'lectures',
+                    title: 'محاضرات المادة',
+                    orderable: false,
+                    searchable: false,
                 },
                 {
                     data: 'action',

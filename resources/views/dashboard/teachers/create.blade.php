@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('title')
-مدرسة ليرن|الصفحة الرئيسية للمستويات
+مدرسة الغد|الصفحة الرئيسية للمستويات
 @stop
 @section('content')
 

@@ -16,8 +16,7 @@ class IsTeacher
      */
     public function handle(Request $request, Closure $next): Response
     {
-         $user = Auth::user();
-        if(!$user || !Teacher::where('user_id' , $user->id)->exists()){
+        if(!Auth::check() || !Auth::user()->teacher){
              abort(403 , 'غير مسموح بالدخول الا كمعلم .');
         }
         return $next($request);

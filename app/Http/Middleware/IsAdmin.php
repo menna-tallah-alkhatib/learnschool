@@ -17,8 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-        if(!$user || Teacher::where('user_id' , $user->id)->exists() || Student::where('user_id' , $user->id)->exists() ){
+        if(!Auth::check() || Auth::user()->teacher){
              abort(403 , 'انت محظور من الصلاحية');
         }
 

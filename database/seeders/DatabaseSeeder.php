@@ -35,10 +35,10 @@ class DatabaseSeeder extends Seeder
             //     'tag'=>'h',
             // ]);
 
-             \App\Models\User::create([
-             'email' => 'ahmed@ahmed.com',
-             'password' => Hash::make('123456789'),
-         ]);
+        //      \App\Models\User::create([
+        //      'email' => 'ahmed@ahmed.com',
+        //      'password' => Hash::make('123456789'),
+        //  ]);
 
 
 
